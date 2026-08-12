@@ -106,7 +106,15 @@ async def play(interaction: discord.Interaction, busca: str):
 
     await interaction.followup.send(f"🎵 **Tocando agora:** `{titulo}`")
 
-
+@bot.tree.command(name="stop", description="Para a música atual")
+async def stop(interaction: discord.Interaction):
+    voice_client = interaction.guild.voice_client
+    if voice_client and (voice_client.is_playing() or voice_client.is_paused()):
+        voice_client.stop()
+        await interaction.response.send_message("⏹️ Música interrompida!")
+    else:
+        await interaction.response.send_message("Nenhuma música tocando no momento.", ephemeral=True)
+        
 @bot.tree.command(name="leave", description="Desconecta o bot do canal de voz")
 async def leave(interaction: discord.Interaction):
     voice_client = interaction.guild.voice_client
