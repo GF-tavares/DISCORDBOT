@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .vscode/
 ffmpeg.exe
+iniciar_bot.bat
+*.vbs
